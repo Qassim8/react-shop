@@ -32,12 +32,12 @@ const Banner = () => {
         className="slider-container h-100 vw-100 d-flex"
         style={{ transform: `translateX(${slideIndex * -100}vw)` , transition: "all 0.8s ease-in-out" }}
       >
-        {data.map((item) => {
+        {data.map((item, index) => {
           return (
             <div
               className="vh-100 w-100 d-flex align-items-center"
                   style={{ backgroundColor: `#${item.bgColor}` }}
-                  key={item.id}
+                  key={index}
             >
               <div className="vh-100 slider-img" style={{ flex: "1" }}>
                 <img

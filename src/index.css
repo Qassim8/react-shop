@@ -19,3 +19,70 @@ nav span{
   font-size: 10px;
 }
 }
+.grid-container .col .img-box{
+  position: relative;
+  height: 100vh;
+}
+.grid-container .col .img-box img{
+  height: 100%;
+  object-fit: cover;
+}
+.grid-container .col .img-box::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #3734347c;
+}
+.grid-container .col .text{
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.grid-container .col .text button{
+  margin-block: 10px;
+  color: rgb(69, 65, 65);
+}
+.card-wrapper{
+  border: 1px solid grey;
+}
+.card-wrapper::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #37343479;
+  transition-duration: .4s;
+  opacity: 0;
+}
+.icon-wrapper{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition-duration: .4s;
+  z-index: 5;
+}
+.icon-wrapper .icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  color: #1f2428f8;
+  background-color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition-duration: .3s;
+}
+.icon-wrapper .icon:hover{
+  background-color: antiquewhite;
+}
+.card-wrapper:hover::after,.card-wrapper:hover .icon-wrapper{
+  opacity: 1;
+}

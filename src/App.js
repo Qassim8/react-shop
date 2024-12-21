@@ -1,12 +1,15 @@
-import Banner from "./components/Banner";
+import { Outlet } from "react-router-dom";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
+import { Fragment } from "react";
 
 function App() {
   return (
-    <div className="">
+    <Fragment>
       <Header />
-      <Banner />
-    </div>
+      <Outlet />
+      <Footer />
+    </Fragment>
   );
 }
 

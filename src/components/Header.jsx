@@ -2,11 +2,16 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Link } from 'react-router-dom';
 import { ShoppingCartOutlined } from '@mui/icons-material';
 import { Badge } from '@mui/material';
+import { useContext } from "react";
+import { cartContext } from "../context/CartProvider";
 
 const Header = () => {
+
+  const { cartItems } = useContext(cartContext);
+
   return (
     <header
-      className=" shadow-sm d-flex align-items-center"
+      className=" shadow-sm d-flex align-items-center position-sticky top-0 bg-white z-3"
       style={{ height: "4.5rem" }}
     >
       <nav className="container d-flex justify-content-between align-items-center">
@@ -23,7 +28,7 @@ const Header = () => {
               style={{
                 borderColor: "lightgrey",
                 opacity: "1",
-                  outline: "none",
+                outline: "none",
               }}
             />
             <SearchIcon
@@ -34,11 +39,17 @@ const Header = () => {
         </div>
         <h1>ZUS.</h1>
         <div className="d-flex align-items-center gap-3">
-          <span>REGISTER</span>
-          <span>SIGNIN</span>
-          <Badge badgeContent={4} color="primary">
-            <ShoppingCartOutlined />
-          </Badge>
+          <Link to="/register" className="text-dark text-decoration-none">
+            REGISTER
+          </Link>
+          <Link to="/login" className="text-dark text-decoration-none">
+            SIGNIN
+          </Link>
+          <Link to="/cart" className="text-dark">
+            <Badge badgeContent={cartItems.length} color="primary">
+              <ShoppingCartOutlined />
+            </Badge>
+          </Link>
         </div>
       </nav>
     </header>
