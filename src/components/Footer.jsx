@@ -5,8 +5,9 @@ import {
   LocationOn,
   Phone,
   Pinterest,
-  Twitter,
+  X,
 } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -43,14 +44,13 @@ const Footer = () => {
               <Instagram />
             </div>
             <div
-              className="icon d-flex justify-content-center align-items-center rounded-circle text-light"
+              className="icon d-flex justify-content-center align-items-center rounded-circle text-light bg-dark"
               style={{
                 height: "40px",
                 width: "40px",
-                backgroundColor: "#0dcaf0",
               }}
             >
-              <Twitter />
+              <X />
             </div>
             <div
               className="icon d-flex justify-content-center align-items-center rounded-circle text-light"
@@ -68,17 +68,29 @@ const Footer = () => {
           <h2 className="mb-4 fs-5">Useful Links</h2>
           <div className="d-flex gap-5">
             <div>
-              <p>Home</p>
-              <p>Man Fashion</p>
-              <p>Accessories</p>
-              <p>Order Tracking</p>
-              <p>Wishlist</p>
+              <Link to="/" className="text-decoration-none text-dark d-block py-1">
+                Home
+              </Link>
+              <Link to="/product" className="text-decoration-none text-dark d-block py-1">
+                Man Fashion
+              </Link>
+              <Link to="/product" className="text-decoration-none text-dark d-block pt-1">
+                Accessories
+              </Link>
+              <p className="my-1">Order Tracking</p>
+              <Link to="/favorite" className="text-decoration-none text-dark d-block">
+                Wishlist
+              </Link>
             </div>
             <div>
-              <p>Cart</p>
-              <p>Women Fashion</p>
-              <p>My Account</p>
-              <p>Terms</p>
+              <Link to="/cart" className="text-decoration-none text-dark d-block py-1">
+                Cart
+              </Link>
+              <Link to="/product" className="text-decoration-none text-dark d-block py-1">
+                Women Fashion
+              </Link>
+              <p className=" my-1">My Account</p>
+              <p className="my-1">Terms</p>
             </div>
           </div>
         </div>

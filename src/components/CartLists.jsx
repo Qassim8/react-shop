@@ -36,7 +36,7 @@ const CartLists = ({
             -
           </span>
         </h3>
-        <span className="fs-2 pe-5">${Math.round(item.price * item.quantity).toPrecision()}</span>
+        <span className="fs-2 pe-5">${(item.price * item.quantity).toFixed(2)}</span>
       </div>
     </div>
   );

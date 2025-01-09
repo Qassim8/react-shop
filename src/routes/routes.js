@@ -7,6 +7,7 @@ import Product from "../pages/Product";
 import Cart from "../pages/Cart";
 import Favorite from "../pages/Favourite";
 import ProductInfo from "../pages/ProductInfo";
+import CheckoutForm from "../components/stripe/CheckoutForm";
 
 export const routes = createBrowserRouter([
   {
@@ -21,11 +22,12 @@ export const routes = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { path: "home", element: <Home /> },
-    { path: "product", element: <Product /> },
-      {path: "product/:id", element: <ProductInfo />},
+      { path: "/", element: <Home /> , index: true},
+      { path: "product", element: <Product /> },
+      { path: "product/:id", element: <ProductInfo /> },
       { path: "cart", element: <Cart /> },
       { path: "favorite", element: <Favorite /> },
+      {path: "checkout", element: <CheckoutForm />}
     ],
   },
 ]);

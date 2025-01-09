@@ -1,15 +1,15 @@
 import { Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import { Fragment } from "react";
+import CombinedProvider from "./context/CombinedProvider";
 
 function App() {
   return (
-    <Fragment>
+    <CombinedProvider>
       <Header />
       <Outlet />
       <Footer />
-    </Fragment>
+    </CombinedProvider>
   );
 }
 

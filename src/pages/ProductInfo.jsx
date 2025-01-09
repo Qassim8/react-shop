@@ -1,54 +1,53 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { cartContext } from "../context/CartProvider";
+import RoutingMessage from "../components/RoutingMessage";
 
 const ProductInfo = () => {
 
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(false);
+  const { addToCart } = useContext(cartContext);
 
-  const { id } = useParams()
+  const { id } = useParams();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    setLoading(true)
     axios
-      .get(`https://fake-apis-uomb.onrender.com/products/${id}`)
+      .get(`http://localhost:4000/products/${id}`)
       .then((data) => setProducts(data.data))
-      .then(() => setLoading(false))
       .catch((error) => {
-        setProducts(error);
-        setLoading(false);
+        console.log(error)
       });
   }, [id]);
 
 
-  return loading ? (
-    <div className="container fs-1"> Loading.... </div>
-  ) : (
-    <div className="py-5 container d-flex flex-column flex-md-row gap-5">
-      <div style={{ flex: "1" }} className="bg-light text-center p-3">
-        <img src={products.image} alt="product" className="mw-100" />
-      </div>
-      <div style={{ flex: "1" }}>
-        <p className="title fs-2">{products.title}</p>
-        <p className="desc pt-3 pb-1">{products.description}</p>
-        <p className="price fs-1">${products.price}</p>
-        <div className="d-flex justify-content-between justify-content-md-start gap-5">
-          {/* <h3 className="fs-4 my-2">
-            <span role="button" className="">
-              +
-            </span>
-            <span className="mx-2 px-3 border border-1 rounded-2">1</span>
-            <span role="button" className="ps-2">
-              -
-            </span>
-          </h3> */}
-          <button className="btn py-2 px-4 mt-2 border border-1 rounded-0">
-            ADD TO CART
-          </button>
+  return (
+    <>
+      <RoutingMessage show={show} close={() => setShow(false)} />
+      <div className="py-5 container d-flex flex-column flex-md-row gap-5">
+        <div
+          style={{ flex: "1", height: "350px" }}
+          className="bg-light text-center p-3"
+        >
+          <img src={products.image} alt="product" className="mw-100 mh-100" />
+        </div>
+        <div style={{ flex: "1" }}>
+          <p className="title fs-2">{products.title}</p>
+          <p className="desc pt-3 pb-1">{products.description}</p>
+          <p className="price fs-1">${products.price}</p>
+          <div className="d-flex justify-content-between justify-content-md-start gap-5">
+            <button
+              className="btn py-2 px-4 mt-2 border border-1 rounded-0"
+              onClick={() => token? addToCart({ ...products }): setShow(true)}
+            >
+              ADD TO CART
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
