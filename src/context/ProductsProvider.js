@@ -9,7 +9,7 @@ function ProductsProvider({ children }) {
   const getHomeProducts = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/products?_limit=8"
+        "https://fake-apis-uomb.onrender.com/products?_limit=8"
       );
       const data = await response.data;
       setHomeProducts(data);
@@ -23,7 +23,9 @@ function ProductsProvider({ children }) {
 
   const getProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/products");
+      const response = await axios.get(
+        "https://fake-apis-uomb.onrender.com/products"
+      );
       const data = await response.data;
       setProducts(data);
     } catch (error) {
@@ -34,38 +36,13 @@ function ProductsProvider({ children }) {
     getProducts();
   }, []);
 
-  const addToFavorite = async (item) => {
-      const updateFavorite = {
-        ...item,
-        favorite: !item.favorite,
-      };
-      try {
-        const response = await axios.put(
-          `http://localhost:4000/products/${item.id}`,
-          updateFavorite
-        );
-        if (response.status === 200) {
-          setProducts(
-            products.map((product) =>
-              product.id === item.id ? updateFavorite : product
-            ));
-            setHomeProducts(
-            homeProducts.map((product) =>
-              product.id === item.id ? updateFavorite : product
-            )
-          );
-        }
-      } catch (e) {
-        console.log(e);
-      }
-  };
 
 
   const filterProducts = async (value) => {
     if (value) {
       try {
         const response = await axios.get(
-          `http://localhost:4000/products?q=${value}`
+          `https://fake-apis-uomb.onrender.com/products?q=${value}`
         );
         const data = response.data;
 
@@ -80,7 +57,7 @@ function ProductsProvider({ children }) {
 
   return (
     <productsContext.Provider
-      value={{ homeProducts, products, filterProducts, addToFavorite }}
+      value={{ homeProducts, products, filterProducts }}
     >
       {children}
     </productsContext.Provider>

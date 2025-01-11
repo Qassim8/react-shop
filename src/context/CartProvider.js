@@ -13,7 +13,7 @@ const CartProvider = ({ children }) => {
       const getCartItems = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:4000/cart?userId=${userId}`
+            `https://fake-apis-uomb.onrender.com/cart?userId=${userId}`
           );
           const data = response.data;
           setCartItems(data);
@@ -26,14 +26,13 @@ const CartProvider = ({ children }) => {
   const addToCart = async (item) => {
     const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
     if (isItemInCart) {
-      // إذا كان العنصر موجودًا بالفعل في السلة، قم بزيادة كميته
       const updatedItem = {
         ...isItemInCart,
         quantity: isItemInCart.quantity + 1,
       };
       try {
         const response = await axios.put(
-          `http://localhost:4000/cart/${item.id}`,
+          `https://fake-apis-uomb.onrender.com/cart/${item.id}`,
           updatedItem
         );
         if (response.status === 200) {
@@ -47,14 +46,15 @@ const CartProvider = ({ children }) => {
         console.log("Error updating item quantity:", error);
       }
     } else {
-      // إذا كان العنصر جديدًا، قم بإضافته إلى السلة
+      
       const newItem = { ...item, quantity: 1 };
       try {
         const response = await axios.post(
-          "http://localhost:4000/cart", {
-          userId,
-          ...newItem
-        }
+          "https://fake-apis-uomb.onrender.com/cart",
+          {
+            userId,
+            ...newItem,
+          }
         );
         if (response.status === 201) {
           setCartItems([...cartItems, { ...newItem }]);
@@ -68,10 +68,11 @@ const CartProvider = ({ children }) => {
   const removeFromCart = async (id) => {
     const isInCart = cartItems.find((cartItem) => cartItem.id === id);
 
-    // إذا كان العنصر موجودًا بالفعل في السلة وكميته اكبر من الواحد، قم بنقص كميته
     if (isInCart.quantity === 1) {
       try {
-        const response = await axios.delete(`http://localhost:4000/cart/${id}`);
+        const response = await axios.delete(
+          `https://fake-apis-uomb.onrender.com/cart/${id}`
+        );
         if (response.status === 200) {
           setCartItems(cartItems.filter((cartItem) => cartItem.id !== id));
         }
@@ -85,7 +86,7 @@ const CartProvider = ({ children }) => {
       };
       try {
         const response = await axios.put(
-          `http://localhost:4000/cart/${id}`,
+          `https://fake-apis-uomb.onrender.com/cart/${id}`,
           updatedItem
         );
         if (response.status === 200) {
@@ -108,11 +109,11 @@ const CartProvider = ({ children }) => {
   const clearCart = async () => {
     try {
       const deletePromises = cartItems.map((item) =>
-        axios.delete(`http://localhost:4000/cart/${item.id}`)
+        axios.delete(`https://fake-apis-uomb.onrender.com/cart/${item.id}`)
       );
       await Promise.all(deletePromises);
       setCartItems([]);
-      // تحديث حالة السلة لتكون فارغة بعد حذف جميع العناصر
+      
     } catch (error) {
       console.log("Error clearing cart:", error);
     }

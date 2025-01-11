@@ -15,7 +15,10 @@ const Register = () => {
 
   const signup = async (user) => {
     try {
-      const res = await axios.post("http://localhost:4000/auth/register", user);
+      const res = await axios.post(
+        "https://fake-apis-uomb.onrender.com/auth/register",
+        user
+      );
 
       if (res.status === 201) {
         localStorage.setItem("token", res.data.token);

@@ -13,7 +13,7 @@ function FavoritesProvider({ children }) {
     const getFavorite = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/favorites?userId=${userId}`
+          `https://fake-apis-uomb.onrender.com/favorites?userId=${userId}`
         );
         setFavoriteItems(await response.data);
       } catch (err) {
@@ -29,10 +29,13 @@ function FavoritesProvider({ children }) {
 
     if (!isFavoriteItem) {
       try {
-        const response = await axios.post(`http://localhost:4000/favorites`, {
-          userId,
-          item,
-        });
+        const response = await axios.post(
+          `https://fake-apis-uomb.onrender.com/favorites`,
+          {
+            userId,
+            item,
+          }
+        );
         if (response.status === 201) {
           setFavoriteItems([...favoriteItems, { ...item }]);
         }
@@ -42,7 +45,7 @@ function FavoritesProvider({ children }) {
     } else {
       try {
         const response = await axios.delete(
-          `http://localhost:4000/favorites/${item.id}`
+          `https://fake-apis-uomb.onrender.com/favorites/${item.id}`
         );
         if (response.status === 200) {
           setFavoriteItems(
@@ -58,7 +61,7 @@ function FavoritesProvider({ children }) {
   const clearFavorites = async () => {
     try {
       const clearPromise = favoriteItems.map((item) =>
-        axios.delete(`http://localhost:4000/favorites/${item.id}`)
+        axios.delete(`https://fake-apis-uomb.onrender.com/favorites/${item.id}`)
       );
       await Promise.all(clearPromise);
       setFavoriteItems([]);

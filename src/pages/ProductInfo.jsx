@@ -15,10 +15,10 @@ const ProductInfo = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/products/${id}`)
+      .get(`https://fake-apis-uomb.onrender.com/products/${id}`)
       .then((data) => setProducts(data.data))
       .catch((error) => {
-        console.log(error)
+        console.log(error);
       });
   }, [id]);
 
