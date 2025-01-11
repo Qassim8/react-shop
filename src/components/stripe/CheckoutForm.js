@@ -31,7 +31,7 @@ function CheckoutForm() {
         const cardElement = elements.getElement(CardElement);
         try {
           const response = await axios.post(
-            "http://localhost:4000/create-payment-intent",
+            "https://fake-apis-uomb.onrender.com/create-payment-intent",
             {
               amount: totalAmount, // المبلغ المطلوب بالدولار (مثال)
             }
