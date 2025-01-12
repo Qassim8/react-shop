@@ -1,14 +1,24 @@
-import { Link } from 'react-router-dom';
-import { FavoriteBorderOutlined, ShoppingCartOutlined } from '@mui/icons-material';
-import { Badge } from '@mui/material';
+import { Link } from "react-router-dom";
+import {
+  FavoriteBorderOutlined,
+  Logout,
+  ShoppingCartOutlined,
+} from "@mui/icons-material";
+import { Badge } from "@mui/material";
 import { useContext } from "react";
 import { cartContext } from "../context/CartProvider";
 import { favoriteContext } from "../context/FavoritesProvider";
+import { Button } from "bootstrap";
 
 const Header = () => {
-
   const { cartItems } = useContext(cartContext);
   const { favoriteItems } = useContext(favoriteContext);
+  const token = localStorage.getItem("token");
+
+  const clear = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
 
   return (
     <header
@@ -20,12 +30,21 @@ const Header = () => {
           <h1 className="text-dark">ZUS.</h1>
         </Link>
         <div className="d-flex align-items-center gap-3">
-          <Link to="/register" className="text-dark text-decoration-none">
-            REGISTER
-          </Link>
-          <Link to="/login" className="text-dark text-decoration-none">
-            SIGNIN
-          </Link>
+          {token ? (
+            <button className="btn" onClick={clear}>
+              Logout
+              <Logout className=" mx-2" />
+            </button>
+          ) : (
+            <>
+              <Link to="/register" className="text-dark text-decoration-none">
+                REGISTER
+              </Link>
+              <Link to="/login" className="text-dark text-decoration-none">
+                SIGNIN
+              </Link>
+            </>
+          )}
           <Link to="/cart" className="text-dark">
             <Badge badgeContent={cartItems.length} color="primary">
               <ShoppingCartOutlined />
@@ -40,6 +59,6 @@ const Header = () => {
       </nav>
     </header>
   );
-}
+};
 
 export default Header;

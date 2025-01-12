@@ -87,6 +87,7 @@ nav {
 }
 .card-wrapper {
   border: 1px solid grey;
+  
 }
 .card-wrapper::after {
   content: "";
@@ -99,6 +100,13 @@ nav {
   transition-duration: 0.4s;
   opacity: 0;
 }
+@media(max-width: 767px){
+  .card-wrapper::after{
+    height: 20%;
+    top: 80%;
+    opacity: 8;
+  }
+}
 .icon-wrapper {
   position: absolute;
   top: 50%;
@@ -107,6 +115,12 @@ nav {
   opacity: 0;
   transition-duration: 0.4s;
   z-index: 1;
+}
+@media(max-width: 767px){
+  .icon-wrapper {
+    top: 90%;
+    opacity: 8;
+  }
 }
 .icon-wrapper .icon {
   display: flex;
