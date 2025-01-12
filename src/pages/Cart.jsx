@@ -13,7 +13,7 @@ const Cart = () => {
   return (
     <div className="text-center">
       <h1 className="py-3">Your Bag</h1>
-      <section className="pb-5 container d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+      <section className=" container d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
         <Link
           to="/product"
           className="cart-btn btn btn-sm border-2 border-dark py-2 px-3 rounded-0"

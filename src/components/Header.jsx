@@ -8,7 +8,6 @@ import { Badge } from "@mui/material";
 import { useContext } from "react";
 import { cartContext } from "../context/CartProvider";
 import { favoriteContext } from "../context/FavoritesProvider";
-import { Button } from "bootstrap";
 
 const Header = () => {
   const { cartItems } = useContext(cartContext);
