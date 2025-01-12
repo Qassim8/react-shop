@@ -7,7 +7,7 @@ function EmptyCart() {
       <div style={{width: "250px"}}>
         <ShoppingBagOutlined className="w-100 h-100"/>
       </div>
-      <h3 className="fw-light">Your cart empty..! go to shop and add some products</h3>
+      <h3 className="fw-light">Your cart empty</h3>
       <Link to='/product' className=" text-decoration-none btn btn-dark text-white rounded-0">Go To Shop</Link>
     </div>
   );
