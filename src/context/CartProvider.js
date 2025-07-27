@@ -7,20 +7,18 @@ const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const userId = localStorage.getItem("userId");
 
-
-
   useEffect(() => {
-      const getCartItems = async () => {
-        try {
-          const response = await axios.get(
-            `https://fake-apis-uomb.onrender.com/cart?userId=${userId}`
-          );
-          const data = response.data;
-          setCartItems(data);
-        } catch (error) {
-          console.log(error);
-        }
-      };
+    const getCartItems = async () => {
+      try {
+        const response = await axios.get(
+          `https://fake-apis-uomb.onrender.com/cart?userId=${userId}`
+        );
+        const data = response.data;
+        setCartItems(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
   }, [userId]);
 
   const addToCart = async (item) => {
@@ -46,7 +44,7 @@ const CartProvider = ({ children }) => {
         console.log("Error updating item quantity:", error);
       }
     } else {
-      
+
       const newItem = { ...item, quantity: 1 };
       try {
         const response = await axios.post(
@@ -113,15 +111,14 @@ const CartProvider = ({ children }) => {
       );
       await Promise.all(deletePromises);
       setCartItems([]);
-      
+
     } catch (error) {
       console.log("Error clearing cart:", error);
     }
   };
-
   return (
     <cartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, totalAmount, clearCart }}
+    value={{ cartItems, addToCart, removeFromCart, totalAmount, clearCart }}
     >
       {children}
     </cartContext.Provider>

@@ -51,6 +51,7 @@ const Register = () => {
       newErrors.passwordLength = "passowrd most be more than 8 chars!";
     if (password !== passwordConfirm)
       newErrors.passMatch = "password confirmation doesn't match password";
+    
     if (Object.values(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
